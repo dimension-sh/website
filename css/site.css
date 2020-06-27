@@ -1,0 +1,37 @@
+html, body, tr, td {
+    font-family: monospace;
+    font-size: 12;
+    background-color: #000a00;
+    color: #00aa00;
+}
+
+pre#logo, b, a, a:link, a:visited, a:active, h3 {
+    color: #00ff00;
+}
+
+a:hover {
+    color: white;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #006600;
+}
+
+div#main {
+    width: 600px;
+    margin: 0 auto;
+}
+
+li {
+    position: relative;
+    list-style: none;
+}
+
+li:before {
+    content: "*";
+    position: absolute;
+    left: -15px;
+    bottom: -3px;
+}
