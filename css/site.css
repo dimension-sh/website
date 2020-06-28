@@ -1,6 +1,6 @@
 html, body, tr, td {
     font-family: monospace;
-    font-size: 12px;
+    font-size: 16px;
     background-color: #000a00;
     color: #00aa00;
 }
@@ -29,7 +29,7 @@ hr {
 }
 
 div#main {
-    width: 650px;
+    width: 820px;
     margin: 0 auto;
 }
 
