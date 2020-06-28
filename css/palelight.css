@@ -7,6 +7,10 @@ pre, b, a, a:link, a:visited, a:active, h3 {
     color: #959DCB;
 }
 
+pre#logo {
+    color: #959DCB;
+}
+
 a:hover {
     color: white;
 }
