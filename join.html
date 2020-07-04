@@ -13,13 +13,17 @@
 
     <p>All you'll need to provide is the following bits of information:</p>
 
-    <ul>
-        <li>The username you wish to use.</li>
-        <li>A SSH public key.</li>
-        <li>Why do you want to join the community.</li>
-    </ul>
-
-    <p>Once you are ready, drop a mail to <a href="mailto:signup@dimension.sh">signup@dimension.sh</a> and we'll get to you as soon as we can.</p>
+    <form action="/cgi/join.cgi" method="post">
+      <p><label for="username">Username</label></br>
+      <input type="text" id="username" name="username"></p>
+      <p><label for="email">Contact Email</label><br/>
+      <input type="text" id="email" name="email"></p>
+      <p><label for="ssh_key">SSH Key</label><br/>
+      <textarea id="ssh_key" rows="5" cols="60" name="ssh_key"></textarea></p>
+      <p><label form="why" id="why" name="why">Why do you want to join?</label><br/>
+      <textarea id="why" rows="5" cols="60" name="why"></textarea></p>
+      <p><input type = "submit" value = "submit" /></p>
+    </form>
     <hr>
 
   </div>
