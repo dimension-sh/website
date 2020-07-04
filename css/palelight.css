@@ -18,3 +18,9 @@ a:hover {
 hr {
     background: #676E95;
 }
+
+input, textarea {
+    background-color: #292D3E;
+    color: #676E95;
+    border: 1px solid #676E95;
+}
