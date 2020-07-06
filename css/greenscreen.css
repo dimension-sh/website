@@ -24,3 +24,7 @@ input, textarea {
     color: #00aa00;
     border: 1px solid #00aa00;
 }
+
+table {
+    border: 1px solid #00aa00;
+}
