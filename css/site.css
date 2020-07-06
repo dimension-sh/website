@@ -1,5 +1,5 @@
 html, body, tr, td {
-    font-family: monospace;
+    font-family: input-mono, monospace;
     font-size: 16px;
 }
 
