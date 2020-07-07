@@ -1,0 +1,30 @@
+html, body, tr, td {
+    background-color: #0C0C0C;
+    color: #CCCCCC;
+}
+
+b, a, a:link, a:visited, a:active, h3 {
+    color: #F2F2F2;
+}
+
+pre#logo {
+    color: #F2F2F2;
+}
+
+a:hover {
+    color: #F9F1A5;
+}
+
+hr {
+    background: #767676;
+}
+
+input, textarea {
+    background-color: #0C0C0C;
+    color: #CCCCCC;
+    border: 1px solid #767676;
+}
+
+table {
+    border: 1px solid #767676;
+}
