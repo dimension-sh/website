@@ -4,7 +4,7 @@
 // 2. Call change_theme(name) from wherever
 
 document.addEventListener('DOMContentLoaded', function(){ 
-    var prev_theme = sessionStorage.getItem("theme");
+    var prev_theme = localStorage.getItem("theme");
     if (prev_theme != null) {
         change_theme(prev_theme);
     }
@@ -12,5 +12,5 @@ document.addEventListener('DOMContentLoaded', function(){
 
 function change_theme(name) {
     document.getElementById('theme').href = '/css/' + name + '.css';
-    sessionStorage.setItem("theme", name);
+    localStorage.setItem("theme", name);
 }
