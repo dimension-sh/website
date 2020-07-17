@@ -1,6 +1,6 @@
 html, body, tr, td {
     font-family: input-mono, monospace;
-    font-size: 16px;
+    font-size: 1em;
 }
 
 div#logo {
