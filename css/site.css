@@ -10,6 +10,7 @@ div#logo {
 pre#logo {
     display: inline-block;
     text-align: left;
+    font-size: 1.25em;
 }
 
 hr {
@@ -31,7 +32,6 @@ li:before {
     content: "*";
     position: absolute;
     left: -15px;
-    bottom: -3px;
 }
 
 input, textarea {
