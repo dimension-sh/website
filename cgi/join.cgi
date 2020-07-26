@@ -8,10 +8,16 @@ import binascii
 import base64
 import pwd
 import os.path
+import smtplib
+from email.message import EmailMessage
+from datetime import datetime
+
+from jinja2 import Template
 import ipaddress
 import dns.resolver
 
-REQUESTS_FOLDER = '/var/www/requests'
+DATA_FOLDER = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data')
+REQUEST_DESTINATION_EMAIL = 'signup@dimension.sh'
 
 VALID_SSH_KEYTYPES = [
     'sk-ecdsa-sha2-nistp256@openssh.com',
@@ -55,8 +61,8 @@ def validate_ip_dnsbl(ip):
 def validate_username(username):
     if re.match(r"^[a-z][-a-z0-9]*$", username) is None:
         return False
-    if os.path.exists(os.path.join(REQUESTS_FOLDER, 'banned_usernames.txt')):
-        with open(os.path.join(REQUESTS_FOLDER, 'banned_usernames.txt'), 'r') as fobj:
+    if os.path.exists(os.path.join(DATA_FOLDER, 'banned_usernames.txt')):
+        with open(os.path.join(os.path.dirname(DATA_FOLDER, 'banned_usernames.txt'), 'r') as fobj:
             if username in [x.strip() for x in fobj.readlines() if x.strip() != '']:
                 return False
     return True
@@ -66,13 +72,12 @@ def validate_sshkey(keystring):
     """ Validates that SSH pubkey string is valid """
     # do we have 3 fields?
     fields = len(keystring.split(' '))
-    if fields < 2 or fields > 3:
+    if fields < 2:
         return 'Incorrect number of fields (%d)' % fields
-
-    if fields == 2:
-        keytype, pubkey = keystring.split(' ')
-    if fields == 3:
-        keytype, pubkey, _ = keystring.split(' ')
+    else:
+        fsplit = keystring.split(' ')
+        keytype = fsplit[0]
+        pubkey = fsplit[1]
 
     # Check it is a valid type
     if not keytype in VALID_SSH_KEYTYPES:
@@ -102,12 +107,13 @@ def validate_email(address):
 
 
 def error(msg):
-    print('<meta http-equiv="refresh" content="3; URL=\'http://dimension.sh/join.html\'"/>')
-    print('<p>An error was encountered: %s</p>' % msg)
+    sys.stdout.write('\n')
+    sys.stdout.write('<meta http-equiv="refresh" content="3; URL=\'http://dimension.sh/join.html\'"/>\n')
+    sys.stdout.write('<p>An error was encountered: %s</p>\n' % msg)
 
 
 def main():
-    sys.stdout.write('Content-Type: text/html\n\n')
+    sys.stdout.write('Content-Type: text/html\n')
 
     # Get the form and extract the values
     form = cgi.FieldStorage()
@@ -116,6 +122,7 @@ def main():
     ssh_key = form.getvalue('ssh_key')
     why = form.getvalue('why')
 
+    # Validate all the things
     if not validate_ip_dnsbl(os.environ["REMOTE_ADDR"]):
         error('Sorry, IP no bueno.')
         return
@@ -143,11 +150,29 @@ def main():
     except KeyError:
         pass
 
-    with open(os.path.join(REQUESTS_FOLDER, username), 'w') as fobj:
-        fobj.write('Why\n---\n\n%s\n\n# mkuser %s %s "%s"\n' %
-                   (why.replace('\n', ' '), username, email, ssh_key))
+    # Build Email
+    with open(os.path.join(DATA_FOLDER, 'email_template.j2'), 'r') as fobj
+        template = Template(fobj.read())
+    content = template.render({
+        'date': datetime.now()
+        'username': username,
+        'email': email,
+        'ssh_key': ssh_key,
+        'why': why,
+    })
 
-    print('<meta http-equiv="refresh" content="0; URL=\'http://dimension.sh/join_submitted.html\'"/>')
+    msg = EmailMessage()
+    msg.set_content(content)
+    msg['Subject'] = f'New User Request - {username}'
+    msg['From'] = 'nobody@dimension.sh'
+    msg['To'] = REQUEST_DESTINATION_EMAIL
+
+    # Send email
+    s = smtplib.SMTP('localhost')
+    s.send_message(msg)
+    s.quit()
+
+    sys.stdout.write('Location: http://dimension.sh/join_submitted.html\n\n')
 
 
 if __name__ == '__main__':
