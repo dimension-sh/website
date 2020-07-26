@@ -62,7 +62,7 @@ def validate_username(username):
     if re.match(r"^[a-z][-a-z0-9]*$", username) is None:
         return False
     if os.path.exists(os.path.join(DATA_FOLDER, 'banned_usernames.txt')):
-        with open(os.path.join(os.path.dirname(DATA_FOLDER, 'banned_usernames.txt'), 'r') as fobj:
+        with open(os.path.join(DATA_FOLDER, 'banned_usernames.txt'), 'r') as fobj:
             if username in [x.strip() for x in fobj.readlines() if x.strip() != '']:
                 return False
     return True
@@ -151,10 +151,10 @@ def main():
         pass
 
     # Build Email
-    with open(os.path.join(DATA_FOLDER, 'email_template.j2'), 'r') as fobj
+    with open(os.path.join(DATA_FOLDER, 'email_template.j2'), 'r') as fobj:
         template = Template(fobj.read())
     content = template.render({
-        'date': datetime.now()
+        'date': datetime.now(),
         'username': username,
         'email': email,
         'ssh_key': ssh_key,
