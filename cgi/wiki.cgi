@@ -1,21 +1,24 @@
 #!/usr/bin/env python3
 
-from markdown.extensions.wikilinks import WikiLinkExtension
-import markdown
+import sys
 import os
 import cgi
 import cgitb
 cgitb.enable()
 
+import markdown
+from markdown.extensions.wikilinks import WikiLinkExtension
+from jinja2 import Template
 
-WIKI_ROOT = '/var/www/wiki/'
+
+DATA_FOLDER = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data')
+WIKI_ROOT = '/srv/wiki/'
 BAD_CHARACTERS = ['.', '/', '\\', ' ']
 
-with open(os.path.join(WIKI_ROOT, 'template.html')) as fobj:
-    template = fobj.read()
+with open(os.path.join(DATA_FOLDER, 'wiki_template.j2')) as fobj:
+    template = Template(fobj.read())
 
-print('Content-Type: text/html')
-print('')
+sys.stdout.write('Content-Type: text/html\n\n')
 
 # Get page name
 qs = cgi.parse()
@@ -39,4 +42,5 @@ with open(page_path, 'r') as fobj:
     html = markdown.markdown(page_data, extensions=[
                              'tables', WikiLinkExtension(base_url='/cgi/wiki.cgi?p=', end_url='')])
 
-print(template.replace('<!--CONTENT-->', html))
+# Render the output
+sys.stdout.write(template.render(html=html))
