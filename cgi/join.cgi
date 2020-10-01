@@ -26,7 +26,6 @@ VALID_SSH_KEYTYPES = [
     'ecdsa-sha2-nistp521',
     'sk-ssh-ed25519@openssh.com',
     'ssh-ed25519',
-    'ssh-rsa',
 ]
 
 def validate_ip_dnsbl(ip):
@@ -78,6 +77,9 @@ def validate_sshkey(keystring):
         fsplit = keystring.split(' ')
         keytype = fsplit[0]
         pubkey = fsplit[1]
+
+    if keytype == 'ssh-rsa':
+        return 'Please generate a ED25519 key rather than a RSA key'
 
     # Check it is a valid type
     if not keytype in VALID_SSH_KEYTYPES:
@@ -135,8 +137,9 @@ def main():
         error('Invalid username')
         return
 
-    if not validate_sshkey(ssh_key) is True:
-        error('Invalid SSH public key')
+    error = validate_sshkey(ssh_key) 
+    if error is not True:
+        error(error)
         return
 
     if not validate_email(email):
