@@ -95,7 +95,7 @@ def validate_sshkey(keystring):
     try:
         str_len = struct.unpack('>I', data[:4])[0]
     except struct.error:
-        return 'Error aquiring key length'
+        return 'Error decoding key length'
 
     # Keytype is encoded and must match
     if not data[4:4+str_len].decode('ascii') == keytype:
