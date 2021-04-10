@@ -16,6 +16,7 @@ pre#logo {
 div#header, div#footer {
     padding: 5px;
     padding-left: 15px;
+    border-radius: 5px;
 }
 
 hr {
