@@ -54,6 +54,7 @@ input, textarea {
     font-family: input-mono, monospace;
     width: 100%;
     border: 0;
+    border-radius: 3px;
 }
 
 table {
