@@ -9,6 +9,7 @@ b, a, a:link, a:visited, a:active, h3 {
 
 pre#logo {
     color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
 }
 
 a:hover {
