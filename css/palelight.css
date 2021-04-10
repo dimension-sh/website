@@ -19,6 +19,11 @@ a:hover {
 hr, div#header, div#footer {
     background: #676E95;
     color: #292D3E;
+    box-shadow: 2px 2px #3f435a;
+}
+
+h1, h2, h3, h4, h5 {
+    text-shadow: 2px 2px #3f435a;
 }
 
 input, textarea {
