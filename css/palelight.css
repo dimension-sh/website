@@ -16,7 +16,7 @@ a:hover {
     color: white;
 }
 
-hr, div#header, div#footer {
+hr, div.bar {
     background: #676E95;
     color: #292D3E;
     box-shadow: 2px 2px #3f435a;

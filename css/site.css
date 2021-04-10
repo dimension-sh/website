@@ -13,7 +13,7 @@ pre#logo {
     font-size: 1.1em;
 }
 
-div#header, div#footer {
+div.bar {
     padding: 5px;
     padding-left: 15px;
     border-radius: 3px;

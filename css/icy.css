@@ -15,8 +15,12 @@ a:hover {
     color: #00BCD4;
 }
 
-hr, div#header, div#footer {
+hr, div.bar {
     background: #4DD0E1;
+    color: #222222;
+}
+
+div.bar a, div.bar a:link, div.bar a:visited, div.bar a:active {
     color: #222222;
 }
 
