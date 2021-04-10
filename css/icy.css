@@ -19,6 +19,11 @@ a:hover {
 hr, div.bar {
     background: #4DD0E1;
     color: #222222;
+    box-shadow: 2px 2px #616161;
+}
+
+h1, h2, h3, h4, h5 {
+    text-shadow: 2px 2px #616161;
 }
 
 div.bar a, div.bar a:link, div.bar a:visited, div.bar a:active {
