@@ -3,11 +3,17 @@ html, body, tr, td {
     font-size: 1em;
 }
 
+@font-face {
+    font-family: Glass;
+    src: url(/font/glass.ttf) format("truetype");
+}
+
 div#logo {
     text-align: center;
 }
 
 pre#logo {
+    font-family: Glass, input-mono, monospace;
     display: inline-block;
     text-align: left;
     font-size: 1.1em;
