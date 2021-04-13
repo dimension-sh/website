@@ -63,3 +63,7 @@ table {
     padding: 5px;
     border-radius: 5px;
 }
+
+div.news h3 {
+    margin-bottom: 1px;
+}

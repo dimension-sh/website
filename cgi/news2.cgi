@@ -4,6 +4,8 @@ import sys
 import os
 import cgi
 import cgitb
+import glob
+from datetime import datetime
 
 from jinja2 import Template
 from markdown.extensions.wikilinks import WikiLinkExtension
@@ -29,15 +31,17 @@ def parse_markdown(page_data):
 if __name__ == '__main__':
     sys.stdout.write('Content-Type: text/html\n\n')
 
-    with open(os.path.join(DATA_FOLDER, 'news_template.j2')) as fobj:
+    with open(os.path.join(DATA_FOLDER, 'news_template.j2'), 'r') as fobj:
         news_template = Template(fobj.read())
 
     html = ''
-    for filename in glob.glob(os.path.join(NEWS_ROOT), '*.md')[:MAX_NEWS_ARTICLES]:
-        with open(filename, 'rb') as fobj:
+    filenames = glob.glob(os.path.join(NEWS_ROOT, '*.md'))
+    filenames.sort(reverse=True)
+    for filename in filenames[:MAX_NEWS_ARTICLES]:
+        with open(filename, 'r') as fobj:
             post = frontmatter.load(fobj)
         rendered = parse_markdown(post.content)
-        html = + news_template.render(post=post, rendered_post=rendered)
+        html += news_template.render(post=post, rendered_post=rendered)
 
     # Render the output
     with open(os.path.join(DATA_FOLDER, 'wiki_template.j2')) as fobj:
