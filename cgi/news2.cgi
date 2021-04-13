@@ -4,6 +4,7 @@ import sys
 import os
 import cgi
 import glob
+import math
 from datetime import datetime
 
 from jinja2 import Template
@@ -37,16 +38,21 @@ if __name__ == '__main__':
     try:
         if 'page' in qs and len(qs['page']):
             page = int(qs['page'][0])
+            if page < 0:
+                page = 1
         else:
-            page = 0
+            page = 1
     except:
-        page = 0
+        page = 1
 
-    news_template = get_template('news_template')
-    html = ''
+    # Get the news files, and paginate
     filenames = glob.glob(os.path.join(NEWS_ROOT, '*.md'))
     filenames.sort(reverse=True)
-    start = page * MAX_NEWS_ARTICLES
+    start = (page - 1) * MAX_NEWS_ARTICLES
+    max_page = math.ceil(len(filenames) / MAX_NEWS_ARTICLES)
+
+    html = ''
+    news_template = get_template('news_template')
     for filename in filenames[start:start + MAX_NEWS_ARTICLES]:
         with open(filename, 'r') as fobj:
             post = frontmatter.load(fobj)
@@ -54,4 +60,4 @@ if __name__ == '__main__':
 
     # Render the output
     page_template = get_template('wiki_template')
-    sys.stdout.write(page_template.render(html=html, page=page))
+    sys.stdout.write(page_template.render(html=html, page=page, max_page=max_page))
