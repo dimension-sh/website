@@ -10,7 +10,7 @@ import cgitb
 cgitb.enable()
 
 
-DATA_FOLDER = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data')
+DATA_FOLDER = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data'))
 WIKI_ROOT = '/srv/wiki/'
 BAD_CHARACTERS = ['.', '/', '\\', ' ']
 
@@ -21,7 +21,7 @@ sys.stdout.write('Content-Type: text/html\n\n')
 
 # Get page name
 qs = cgi.parse()
-if 'p' in qs:
+if 'p' in qs and len(qs['p']):
     page = qs['p'][0].lower()
 else:
     page = 'index'
@@ -30,9 +30,9 @@ else:
 for char in BAD_CHARACTERS:
     page = page.replace(char, '_')
 
-# Check if the page exists
-page_path = os.path.join(WIKI_ROOT, '%s.md' % page)
-if not os.path.exists(page_path):
+# Sanitize path and check if the page exists
+page_path = os.path.abspath(os.path.join(WIKI_ROOT, '%s.md' % page))
+if not page_path.startswith(WIKI_ROOT) or not os.path.exists(page_path):
     page_path = os.path.join(WIKI_ROOT, '404.md')
 
 # Open and format the page
