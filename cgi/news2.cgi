@@ -3,7 +3,6 @@
 import sys
 import os
 import cgi
-import cgitb
 import glob
 from datetime import datetime
 
@@ -45,4 +44,4 @@ if __name__ == '__main__':
 
     # Render the output
     page_template = get_template('wiki_template')
-    sys.stdout.write(template.render(html=html))
+    sys.stdout.write(page_template.render(html=html))
