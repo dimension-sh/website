@@ -7,7 +7,6 @@ import sys
 import os
 import cgi
 import cgitb
-cgitb.enable()
 
 
 DATA_FOLDER = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data'))

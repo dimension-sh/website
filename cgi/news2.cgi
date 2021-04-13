@@ -12,12 +12,15 @@ from markdown.extensions.wikilinks import WikiLinkExtension
 import markdown
 import frontmatter
 
-cgitb.enable()
-
 
 DATA_FOLDER = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data'))
 NEWS_ROOT = '/srv/news/'
 MAX_NEWS_ARTICLES = 5
+
+
+def get_template(template_name):
+    with open(os.path.join(DATA_FOLDER, template_name + '.j2'), 'r') as fobj:
+        return Template(fobj.read())
 
 
 def parse_markdown(page_data):
@@ -31,19 +34,15 @@ def parse_markdown(page_data):
 if __name__ == '__main__':
     sys.stdout.write('Content-Type: text/html\n\n')
 
-    with open(os.path.join(DATA_FOLDER, 'news_template.j2'), 'r') as fobj:
-        news_template = Template(fobj.read())
-
+    news_template = get_template('news_template')
     html = ''
     filenames = glob.glob(os.path.join(NEWS_ROOT, '*.md'))
     filenames.sort(reverse=True)
     for filename in filenames[:MAX_NEWS_ARTICLES]:
         with open(filename, 'r') as fobj:
             post = frontmatter.load(fobj)
-        rendered = parse_markdown(post.content)
-        html += news_template.render(post=post, rendered_post=rendered)
+        html += news_template.render(post=post, rendered_post=parse_markdown(post.content))
 
     # Render the output
-    with open(os.path.join(DATA_FOLDER, 'wiki_template.j2')) as fobj:
-        template = Template(fobj.read())
+    page_template = get_template('wiki_template')
     sys.stdout.write(template.render(html=html))
