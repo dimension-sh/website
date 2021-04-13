@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 
+from jinja2 import Template
+from markdown.extensions.wikilinks import WikiLinkExtension
+import markdown
 import sys
 import os
 import cgi
 import cgitb
 cgitb.enable()
-
-import markdown
-from markdown.extensions.wikilinks import WikiLinkExtension
-from jinja2 import Template
 
 
 DATA_FOLDER = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data')
@@ -39,8 +38,13 @@ if not os.path.exists(page_path):
 # Open and format the page
 with open(page_path, 'r') as fobj:
     page_data = fobj.read()
-    html = markdown.markdown(page_data, extensions=[
-                             'tables', WikiLinkExtension(base_url='/cgi/wiki.cgi?p=', end_url='')])
+
+    extensions = [
+        'tables',
+        'fenced_code',
+        WikiLinkExtension(base_url='/cgi/wiki.cgi?p=', end_url=''),
+    ]
+    html = markdown.markdown(page_data, extensions=extensions)
 
 # Render the output
 sys.stdout.write(template.render(html=html))
