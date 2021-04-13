@@ -16,7 +16,7 @@ from jinja2 import Template
 import ipaddress
 import dns.resolver
 
-DATA_FOLDER = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data')
+DATA_FOLDER = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data'))
 REQUEST_DESTINATION_EMAIL = 'signup@dimension.sh'
 
 VALID_SSH_KEYTYPES = [
@@ -126,7 +126,7 @@ def main():
 
     # Validate all the things
     if not validate_ip_dnsbl(os.environ["REMOTE_ADDR"]):
-        error('Sorry, IP no bueno.')
+        error('Sorry, Your IP no bueno.')
         return
 
     if not username or not email or not ssh_key or not why:
