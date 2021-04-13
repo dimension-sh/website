@@ -33,15 +33,25 @@ def parse_markdown(page_data):
 if __name__ == '__main__':
     sys.stdout.write('Content-Type: text/html\n\n')
 
+    qs = cgi.parse()
+    try:
+        if 'page' in qs and len(qs['page']):
+            page = int(qs['page'][0])
+        else:
+            page = 0
+    except:
+        page = 0
+
     news_template = get_template('news_template')
     html = ''
     filenames = glob.glob(os.path.join(NEWS_ROOT, '*.md'))
     filenames.sort(reverse=True)
-    for filename in filenames[:MAX_NEWS_ARTICLES]:
+    start = page * MAX_NEWS_ARTICLES
+    for filename in filenames[start:start + MAX_NEWS_ARTICLES]:
         with open(filename, 'r') as fobj:
             post = frontmatter.load(fobj)
         html += news_template.render(post=post, rendered_post=parse_markdown(post.content))
 
     # Render the output
     page_template = get_template('wiki_template')
-    sys.stdout.write(page_template.render(html=html))
+    sys.stdout.write(page_template.render(html=html, page=page))
