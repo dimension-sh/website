@@ -76,9 +76,18 @@ div.container {
 
 div#home-left {
     width: 80%;
+    margin-right: 10px;
+}
+
+div #home-right h4 {
+    margin-top: 0px;
 }
 
 /* Patchlog */
 div#patchlog {
     font-size: 0.75em;
+}
+
+div#patchlog p {
+    margin-top: 0px;
 }
