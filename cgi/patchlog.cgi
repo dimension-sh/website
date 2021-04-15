@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from twtxt.parser import parse_tweets
 
 sys.stdout.write('Content-Type: text/html\n\n')
