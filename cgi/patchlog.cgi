@@ -9,5 +9,5 @@ with open('/srv/news/patchlog.txt', 'r') as fobj:
 
 sys.stdout.write("<div id='patchlog'>")
 for tweet in tweets[:10]:
-    sys.stdout.write(f"<div class='patchentry'><span id='date'>{tweet.created_at.date()}</span><p>{tweet.text}</p></div>")
+    sys.stdout.write(f"<div class='patchentry'><b id='date'>{tweet.created_at.date()}</b><p>{tweet.text}</p></div>")
 sys.stdout.write("</div>")
