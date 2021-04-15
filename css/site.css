@@ -70,19 +70,15 @@ div.news h3 {
 }
 
 /* Homepage Boxes */
-div#home-left {
-    
+div.container {
+    display: flex;
 }
 
-div#home-right {
-
+div#home-left {
+    width: 80%;
 }
 
 /* Patchlog */
-div#patchlog div.patchentry {
-
-}
-
-div#patchlog span.date {
-
+div#patchlog {
+    font-size: 0.75em;
 }

@@ -8,6 +8,6 @@ with open('/srv/news/patchlog.txt', 'r') as fobj:
     tweets = parse_tweets(fobj.readlines(), 'patchlog')
 
 sys.stdout.write("<div id='patchlog'>")
-for tweet in tweets:
-    sys.stdout.write(f"<div class='patchentry'><span id='date'>{tweet.created_at.date()}</span> - {tweet.text}</div>")
+for tweet in tweets[:10]:
+    sys.stdout.write(f"<div class='patchentry'><span id='date'>{tweet.created_at.date()}</span><p>{tweet.text}</p></div>")
 sys.stdout.write("</div>")
