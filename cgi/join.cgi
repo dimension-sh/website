@@ -166,7 +166,7 @@ def main():
 
     msg = EmailMessage()
     msg.set_content(content)
-    msg['Subject'] = f'New User Request - {username}'
+    msg['Subject'] = f'[DIMENSION.SH] New User Request - {username}'
     msg['From'] = 'nobody@dimension.sh'
     msg['To'] = REQUEST_DESTINATION_EMAIL
 
