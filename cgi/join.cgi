@@ -137,9 +137,9 @@ def main():
         error('Invalid username')
         return
 
-    error = validate_sshkey(ssh_key) 
-    if error is not True:
-        error(error)
+    ret = validate_sshkey(ssh_key) 
+    if ret is not True:
+        error(ret)
         return
 
     if not validate_email(email):
