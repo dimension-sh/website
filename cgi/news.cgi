@@ -31,8 +31,8 @@ def parse_markdown(page_data):
     return markdown.markdown(page_data, extensions=extensions)
 
 
-if __name__ == '__main__':
-    sys.stdout.write('Content-Type: text/html\n\n')
+def main(output=sys.stdout):
+    output.write('Content-Type: text/html\n\n')
 
     qs = cgi.parse()
     try:
@@ -58,4 +58,8 @@ if __name__ == '__main__':
             post = frontmatter.load(fobj)
         html += news_template.render(post=post, rendered_post=parse_markdown(post.content))
 
-    sys.stdout.write(html)
+    output.write(html)
+
+
+if __name__ == '__main__':
+    main()
