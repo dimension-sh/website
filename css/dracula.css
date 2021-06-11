@@ -27,8 +27,8 @@ b, a, a:link, a:visited, a:active, h3 {
 }
 
 pre#logo {
-    color: var(--base03);
-    text-shadow: 0 0 5px var(--base01);
+    color: var(--base05);
+    text-shadow: 0 0 5px var(--base03);
 }
 
 a:hover {
