@@ -28,11 +28,11 @@ b, a, a:link, a:visited, a:active, h1, h2, h3, h4, h5 {
 
 pre#logo {
     color: var(--base05);
-    text-shadow: 0 0 5px var(--base03);
+    text-shadow: 0 0 20px var(--base03), 0 0 30px var(--base03), 0 0 40px var(--base03), 0 0 55px var(--base03), 0 0 75px var(--base03);
 }
 
 a:hover {
-    color: white;
+    color: var(--base05);
 }
 
 hr, div.bar {
