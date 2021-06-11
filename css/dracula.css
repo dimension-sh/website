@@ -22,7 +22,7 @@ html, body, tr, td {
     color: var(--base05);
 }
 
-b, a, a:link, a:visited, a:active, h3 {
+b, a, a:link, a:visited, a:active, h1, h2, h3, h4, h5 {
     color: var(--base0A);
 }
 
@@ -46,8 +46,8 @@ h1, h2, h3, h4, h5, th {
 }
 
 input, textarea {
-    background-color: var(--base01);
-    color: #var(--base05);
+    background-color: var(--base00);
+    color: var(--base05);
     border: 1px solid var(--base03);
 }
 
