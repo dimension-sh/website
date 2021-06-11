@@ -1,41 +1,57 @@
-html, body, tr, td {
-    background-color: #222222;
-    color: #BDBDBD;
+:root {
+    --base00: #021012;
+    --base01: #031619;
+    --base02: #041f23;
+    --base03: #052e34;
+    --base04: #064048;
+    --base05: #095b67;
+    --base06: #0c7c8c;
+    --base07: #109cb0;
+    --base08: #16c1d9;
+    --base09: #b3ebf2;
+    --base0A: #80deea;
+    --base0B: #4dd0e1;
+    --base0C: #26c6da;
+    --base0D: #00bcd4;
+    --base0E: #00acc1;
+    --base0F: #0097a7;
 }
 
-b, a, a:link, a:visited, a:active, h3 {
-    color: #4DD0E1;
+
+html, body, tr, td {
+    background-color: var(--base00);
+    color: var(--base05);
+}
+
+b, a, a:link, a:visited, a:active, h1, h2, h3, h4, h5 {
+    color: var(--base0A);
 }
 
 pre#logo {
-    color: rgb(238, 238, 238);
-    text-shadow: 0 0 5px white;
+    color: var(--base05);
+    text-shadow: 0 0 20px var(--base03), 0 0 30px var(--base03), 0 0 40px var(--base03), 0 0 55px var(--base03), 0 0 75px var(--base03);
 }
 
 a:hover {
-    color: #00BCD4;
+    color: var(--base05);
 }
 
 hr, div.bar {
-    background: #4DD0E1;
-    color: #222222;
-    box-shadow: 2px 2px #616161;
+    background: var(--base02);
+    color: var(--base05);
+    box-shadow: 2px 2px var(--base01);
 }
 
 h1, h2, h3, h4, h5, th {
-    text-shadow: 2px 2px #616161;
-}
-
-div.bar a, div.bar a:link, div.bar a:visited, div.bar a:active {
-    color: #222222;
+    text-shadow: 2px 2px var(--base02);
 }
 
 input, textarea {
-    background-color: #222222;
-    color: #BDBDBD;
-    border: 1px solid #4DD0E1;
+    background-color: var(--base00);
+    color: var(--base05);
+    border: 1px solid var(--base03);
 }
 
 table, div#body pre  {
-    border: 1px solid #4DD0E1;
+    border: 1px solid var(--base03);
 }
