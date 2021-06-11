@@ -32,6 +32,6 @@ input, textarea {
     border: 1px solid #676E95;
 }
 
-table {
+table, div#main pre  {
     border: 1px solid #676E95;
 }
