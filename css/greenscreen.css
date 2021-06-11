@@ -23,7 +23,7 @@ html, body, tr, td {
 }
 
 b, a, a:link, a:visited, a:active, h1, h2, h3, h4, h5 {
-    color: var(--base0B);
+    color: var(--base07);
 }
 
 pre#logo {
