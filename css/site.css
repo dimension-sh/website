@@ -62,9 +62,11 @@ li:before {
 
 input, textarea {
     font-family: input-mono, monospace;
+    font-size: 0.75em;
     width: 100%;
     border: 0;
     border-radius: 3px;
+    padding: 5px;
 }
 
 table {
