@@ -26,7 +26,7 @@ b, strong, a, a:link, a:visited, a:active, h1, h2, h3, h4, h5 {
     color: var(--base07);
 }
 
-pre#logo {
+div#logo pre {
     color: var(--base05);
     text-shadow: 0 0 20px var(--base03), 0 0 30px var(--base03), 0 0 40px var(--base03), 0 0 55px var(--base03), 0 0 75px var(--base03);
 }

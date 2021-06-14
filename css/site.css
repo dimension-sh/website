@@ -12,7 +12,7 @@ div#logo {
     text-align: center;
 }
 
-pre#logo {
+div#logo pre {
     font-family: Glass, input-mono, monospace;
     display: inline-block;
     text-align: left;

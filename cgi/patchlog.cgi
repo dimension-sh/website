@@ -11,7 +11,7 @@ def main(output=sys.stdout):
 
     output.write("<div id='patchlog'>")
     for tweet in sorted(tweets, key=lambda x: x.created_at, reverse=True)[:10]:
-        output.write(f"<div class='patchentry'><b id='date'>{tweet.created_at.date()}</b><p>{tweet.text}</p></div>")
+        output.write(f"<div class='patchentry'><b class='date'>{tweet.created_at.date()}</b><p>{tweet.text}</p></div>")
     output.write("</div>")
 
 

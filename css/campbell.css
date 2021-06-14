@@ -7,7 +7,7 @@ b, strong, a, a:link, a:visited, a:active, h3 {
     color: #F2F2F2;
 }
 
-pre#logo {
+div#logo pre {
     color: #F2F2F2;
     text-shadow: 0 0 5px white;
 }
