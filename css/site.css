@@ -40,6 +40,10 @@ div#main {
     margin: 0 auto;
 }
 
+div#body {
+    padding: 10px
+}
+
 div#body pre {
     padding: 10px;
     border-radius: 5px;
