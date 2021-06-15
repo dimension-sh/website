@@ -5,7 +5,7 @@ import json
 
 
 def main(output=sys.stdout):
-    output.write('Content-Type: text/html\n\n<ul>\n')
+    output.write('Content-Type: text/html\n\n<ul class="user-list">\n')
 
     with open('../tilde.json', 'r') as fobj:
         data = json.loads(fobj.read())
