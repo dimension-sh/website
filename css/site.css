@@ -61,6 +61,25 @@ li:before {
     top: 0.15em;
 }
 
+ul.user-list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: 0;
+}
+
+ul.user-list li {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 10em;
+}
+
+ul.user-list li:before {
+    content: "";
+}
+
 input, textarea {
     font-family: input-mono, monospace;
     font-size: 0.75em;
