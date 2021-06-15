@@ -130,12 +130,12 @@ def main():
         error('Sorry, Your IP no bueno.')
         return
 
-    if not username or not email or not ssh_key or not why or not rules:
-        error('All fields must be provided.')
-        return
-
     if rules != '1':
         error('You have to accept the rules.')
+        return
+
+    if not username or not email or not ssh_key or not why:
+        error('All fields must be provided.')
         return
 
     if not validate_username(username) is True:
