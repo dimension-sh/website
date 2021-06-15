@@ -123,14 +123,19 @@ def main():
     email = form.getvalue('email')
     ssh_key = form.getvalue('ssh_key')
     why = form.getvalue('why')
+    rules = form.getvalue('rules')
 
     # Validate all the things
     if not validate_ip_dnsbl(os.environ["REMOTE_ADDR"]):
         error('Sorry, Your IP no bueno.')
         return
 
-    if not username or not email or not ssh_key or not why:
+    if not username or not email or not ssh_key or not why or not rules:
         error('All fields must be provided.')
+        return
+
+    if rules != '1':
+        error('You have to accept the rules.')
         return
 
     if not validate_username(username) is True:
