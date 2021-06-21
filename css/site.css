@@ -30,6 +30,10 @@ div#footer {
     margin-top: 10px;
 }
 
+h1 {
+    text-transform: uppercase;
+}
+
 hr {
     border: 0;
     height: 2px;
