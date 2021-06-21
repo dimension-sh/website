@@ -23,7 +23,7 @@ html, body, tr, td {
     color: var(--base05);
 }
 
-b, strong, a, a:link, a:visited, a:active, h1, h2, h3, h4, h5 {
+b, strong, a, a:link, a:visited, a:active, h1, h2, h3, h4, h5, label {
     color: var(--base0A);
 }
 
@@ -42,7 +42,7 @@ hr, div.bar {
     box-shadow: 2px 2px var(--base01);
 }
 
-h1, h2, h3, h4, h5, th {
+h1, h2, h3, h4, h5, th, label {
     text-shadow: 2px 2px var(--base02);
 }
 
